@@ -4,6 +4,18 @@ import os
 import utils
 import myclassifier
 import detect
+import images
+
+
+def generate_data_image():
+    print(f"====================")
+    print(f"generate_data_image")
+    print(f"====================")
+    images.main()
+
+
+def test_image():
+    detect.test_image_set('C:\\dev\\workspaceMateus\\gaitule\\archive_modify\\virus\\USVVQVIQSK_mirror.jpg')
 
 
 def clean_trained():
@@ -13,14 +25,17 @@ def clean_trained():
 
 
 def main1():
-    clean_trained()
+    # clean_trained()
     data = utils.load_data_pickle()
     myclassifier.train_and_save_model(data)
     detect.test_with_image_window(data)
     # utils.open_image()
 
 
-main1()
+generate_data_image()
+# main1()
+
+
 
 # def main2():
 #     data = utils.load_data_pickle()

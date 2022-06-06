@@ -7,14 +7,19 @@ import random
 import string
 import glob
 from PIL import Image
+import re
 
 import global_properties as my_global
 json = my_global.get_properties()
 
 
-def generate_image_name():
+def generate_image_name(degress):
     letters = string.ascii_uppercase
     new_random_letters = ''.join(random.choice(letters) for i in range(10))
+
+    if degress:
+        return new_random_letters + "_" + str(degress) + ".jpg"
+
     return new_random_letters + ".jpg"
 
 
@@ -58,6 +63,7 @@ def add_mask():
 
     dir_pictures_modify = json['dir_pictures_modify']
     categories = json['categories']
+    circle_mask = json['circle_mask']
 
     for category in categories:
         path = os.path.join(dir_pictures_modify, category)
@@ -66,7 +72,7 @@ def add_mask():
             image_path = os.path.join(path, img_name)
 
             background = Image.open(image_path)
-            foreground = Image.open('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\circleMask.png')
+            foreground = Image.open(circle_mask)
 
             background.paste(foreground, (0, 0), foreground)
             background.convert('RGB')
@@ -106,23 +112,25 @@ def normalize_size_and_mirror():
             img_content = get_image(image_path)
             img_resize = resize_image(img_content, normalize_size_image)
 
-            img_name = generate_image_name()
+            img_name = generate_image_name(None)
 
             new_image_path = os.path.join(dir_pictures_modify, category, img_name)
             new_path_category = os.path.join(dir_pictures_modify, category)
             write_image(new_path_category, new_image_path, img_resize)
 
             img_mirrored = get_mirror_image(img_resize)
-            new_image_name = img_name.replace(".jpg", "_mirror.jpg")
+            new_image_name = img_name.replace(".jpg", "-mirror.jpg")
 
             new_image_path = os.path.join(dir_pictures_modify, category, new_image_name)
             write_image(new_path_category, new_image_path, img_mirrored)
+
+            break
 
 
 def work_in_data_image():
     normalize_size_and_mirror()
     generate_rotated_images()
-    add_mask()
+    # add_mask()
 
 
 #não funcionando
@@ -155,16 +163,20 @@ def generate_rotated_images():
 
             while degress_split < degress:
                 img_content_rotated = imutils.rotate(img_content, degress_split)
-                path_category_random_image = os.path.join(path_category, generate_image_name())
+
+                degress_split = degress_split + interval
+
+                img_name_splited = re.split(r"\.|_", img_name)
+                img_name = f"{img_name_splited[0]}_{degress_split}.jpg"
+
+                path_category_random_image = os.path.join(path_category, img_name)
 
                 write_image(path_category, path_category_random_image, img_content_rotated)
-                degress_split = degress_split + degress_split
 
             degress_split = interval
+            break
 
 
 def main():
     work_in_data_image()
 
-
-main()

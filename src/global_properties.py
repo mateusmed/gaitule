@@ -12,7 +12,7 @@ def get_properties():
         print(f'== load properties of file ==')
         print(f'=============================')
 
-        f = open('C:\\dev\\workspaceMateus\\pos\\13_tcc\\properties\\properties.json')
+        f = open('C:\\dev\\workspaceMateus\\gaitule\\properties\\properties.json')
         properties = json.load(f)
         f.close()
 

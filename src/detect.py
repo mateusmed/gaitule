@@ -13,7 +13,7 @@ import global_properties as my_global
 json = my_global.get_properties()
 
 
-def test_image_set():
+def test_image_set(image_path):
     print('=================================')
     print('TESTE IMAGE SET')
     print('=================================')
@@ -25,16 +25,12 @@ def test_image_set():
     data = utils.load_data_pickle()
     (feature, labels) = data
 
-    # data = []
-
-    image = cv2.imread('C:\\dev\\workspaceMateus\\pos\\13_tcc\\archive_modify\\virus\\USVVQVIQSK_mirror.jpg')
+    image = cv2.imread(image_path)
     image = cv2.resize(image, (224, 224))
     image = np.array(image, dtype=np.float32)
-    # data.append([image, 'inflamatorias'])
 
     feature = np.array([image], dtype=np.float32)
     feature = feature / 255.0
-    #(224, 224, 3)
     print(f'SHAPE: {image.shape}')
 
     prediction = model.predict(feature)
@@ -89,7 +85,7 @@ def test_with_image_window(data):
     plt.show()
 
 
-test_image_set()
+# test_image_set()
 
 
 # test_with_image_window()
