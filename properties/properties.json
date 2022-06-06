@@ -1,0 +1,9 @@
+{
+  "model_file_save": "C:\\dev\\workspaceMateus\\gaitule\\model\\mymodel.h5",
+  "pickler_file": "C:\\dev\\workspaceMateus\\gaitule\\dataPickle\\data.pickle",
+  "dir_pictures_modify": "C:\\dev\\workspaceMateus\\gaitule\\archive_modify",
+  "dir_pictures": "C:\\dev\\workspaceMateus\\gaitule\\archive",
+  "categories": ["inflamatorias", "normais"],
+  "degress_rotation_interval": 10,
+  "normalize_size_image": 512
+}
