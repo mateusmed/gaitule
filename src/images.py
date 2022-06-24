@@ -13,12 +13,27 @@ import global_properties as my_global
 json = my_global.get_properties()
 
 
-def generate_image_name(degress):
+# #not working, - considerar o resize conforme o properties
+# def resize_circle():
+#     im = Image.open('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\circleMask.png')
+#     size = 512, 512
+#     im.thumbnail(size, Image.ANTIALIAS)
+#     im.save('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\circleMask_2.png', "png")
+#
+#
+# #não funcionando
+# def clean_archive_modify():
+#     content = f"{json['dir_pictures_modify']}\\*"
+#     files = glob.glob(content)
+#
+#     for f in files:
+#         print(f"remove {f}")
+#         os.remove(f)
+
+
+def generate_image_name():
     letters = string.ascii_uppercase
     new_random_letters = ''.join(random.choice(letters) for i in range(10))
-
-    if degress:
-        return new_random_letters + "_" + str(degress) + ".jpg"
 
     return new_random_letters + ".jpg"
 
@@ -50,14 +65,6 @@ def resize_image(img, number_pixels):
     return cv2.resize(img, (number_pixels, number_pixels), interpolation=cv2.INTER_CUBIC)
 
 
-#not working
-def resize_circle():
-    im = Image.open('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\circleMask.png')
-    size = 512, 512
-    im.thumbnail(size, Image.ANTIALIAS)
-    im.save('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\circleMask_2.png', "png")
-
-
 # add mask in all images
 def add_mask():
 
@@ -81,19 +88,6 @@ def add_mask():
             print(f'added mask on {image_path}')
 
 
-def test_add_circle_mask():
-    try:
-        background = Image.open('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\AA.jpg')
-        foreground = Image.open('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\circleMask.png')
-
-        background.paste(foreground, (0, 0), foreground)
-        background.convert('RGB')
-        background.save('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\ok.jpg')
-
-    except Exception as e:
-        print(str(e))
-
-
 def get_mirror_image(img_content):
     return cv2.flip(img_content, 1)
 
@@ -112,7 +106,7 @@ def normalize_size_and_mirror():
             img_content = get_image(image_path)
             img_resize = resize_image(img_content, normalize_size_image)
 
-            img_name = generate_image_name(None)
+            img_name = generate_image_name()
 
             new_image_path = os.path.join(dir_pictures_modify, category, img_name)
             new_path_category = os.path.join(dir_pictures_modify, category)
@@ -130,17 +124,7 @@ def normalize_size_and_mirror():
 def work_in_data_image():
     normalize_size_and_mirror()
     generate_rotated_images()
-    # add_mask()
-
-
-#não funcionando
-def clean_archive_modify():
-    content = f"{json['dir_pictures_modify']}\\*"
-    files = glob.glob(content)
-
-    for f in files:
-        print(f"remove {f}")
-        os.remove(f)
+    add_mask()
 
 
 def generate_rotated_images():

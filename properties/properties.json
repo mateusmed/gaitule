@@ -3,7 +3,8 @@
   "pickler_file": "C:\\dev\\workspaceMateus\\gaitule\\dataPickle\\data.pickle",
   "dir_pictures_modify": "C:\\dev\\workspaceMateus\\gaitule\\archive_modify",
   "dir_pictures": "C:\\dev\\workspaceMateus\\gaitule\\archive",
+  "circle_mask": "C:\\dev\\workspaceMateus\\gaitule\\mask\\circleMask.png",
   "categories": ["inflamatorias", "normais"],
-  "degress_rotation_interval": 10,
+  "degress_rotation_interval": 20,
   "normalize_size_image": 512
 }

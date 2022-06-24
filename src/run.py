@@ -34,13 +34,3 @@ def main1():
 
 generate_data_image()
 # main1()
-
-
-
-# def main2():
-#     data = utils.load_data_pickle()
-#     detect.test_with_image_window(data, utils.categories)
-
-
-# print(f"{load_properties()}")
-# print(f"{load_properties()}")
