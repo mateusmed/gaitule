@@ -118,8 +118,6 @@ def normalize_size_and_mirror():
             new_image_path = os.path.join(dir_pictures_modify, category, new_image_name)
             write_image(new_path_category, new_image_path, img_mirrored)
 
-            break
-
 
 def work_in_data_image():
     normalize_size_and_mirror()
@@ -158,7 +156,6 @@ def generate_rotated_images():
                 write_image(path_category, path_category_random_image, img_content_rotated)
 
             degress_split = interval
-            break
 
 
 def main():

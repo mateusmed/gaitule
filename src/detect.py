@@ -86,6 +86,4 @@ def test_with_image_window(data):
 
 
 # test_image_set()
-
-
 # test_with_image_window()

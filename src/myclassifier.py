@@ -22,6 +22,20 @@ são simplesmente valores numéricos onde o maior indica a classe vencedora.
 
 """
 
+"""
+    filters: Inteiro, a dimensionalidade do espaço de saída (ou seja, o número de filtros de saída na convolução).
+
+    kernel_size: Um inteiro ou tupla/lista de 2 inteiros, especificando a altura e a largura da janela de convolução 2D. 
+    Pode ser um único inteiro para especificar o mesmo valor para todas as dimensões espaciais.
+
+
+    padding: um de "valid" ou "same" (não diferencia maiúsculas de minúsculas). 
+    "válido" significa sem preenchimento. "same" resulta em preenchimento com zeros 
+    uniformemente à esquerda/direita ou para cima/para baixo da entrada. Quando padding="same" e passos=1, a
+     saída tem o mesmo tamanho que a entrada.
+
+     activation: Função de ativação a ser usada.
+"""
 
 def train_and_save_model(data):
 
@@ -42,6 +56,7 @@ def train_and_save_model(data):
     x_train, x_test, y_train, y_test = train_test_split(feature, labels, test_size=0.1)
 
     input_layer = tf.keras.layers.Input([224, 224, 3])
+
 
     conv1 = tf.keras.layers.Conv2D(filters=32,
                                    kernel_size=(5, 5),
