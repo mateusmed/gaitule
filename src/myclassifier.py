@@ -37,6 +37,18 @@ são simplesmente valores numéricos onde o maior indica a classe vencedora.
      activation: Função de ativação a ser usada.
 """
 
+"""
+    Flatten
+    transforma os dados das diferentes layers (RGB) em dados vetorizados, exemplo:
+
+    red
+    green
+    blue
+
+    para: [red, green, blue]
+
+    """
+
 def train_and_save_model(data):
 
     print(f'=============================')
@@ -58,7 +70,7 @@ def train_and_save_model(data):
     input_layer = tf.keras.layers.Input([224, 224, 3])
 
 
-    conv1 = tf.keras.layers.Conv2D(filters=32,
+    conv1 = tf.keras.layers.Conv2D(filters=32,              # numero de filtros
                                    kernel_size=(5, 5),
                                    padding='same',
                                    activation='relu')(input_layer)
@@ -81,13 +93,14 @@ def train_and_save_model(data):
     pool3 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2),
                                          strides=(2, 2))(conv3)
 
-    conv4 = tf.keras.layers.Conv2D(filters=96,
+    conv4 = tf.keras.layers.Conv2D(filters=128,                 # alterado para 128 (testar)
                                    kernel_size=(3, 3),
                                    padding='same',
                                    activation='relu')(pool3)
 
     pool4 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2),
                                          strides=(2, 2))(conv4)
+
 
     flt1 = tf.keras.layers.Flatten()(pool4)
 
@@ -96,8 +109,8 @@ def train_and_save_model(data):
 
     model = tf.keras.Model(input_layer, out)
 
-    model.compile(optimizer='adam',
-                  loss='sparse_categorical_crossentropy',
+    model.compile(optimizer='adam',                      # otimizador tenta otimizar os pesos e os parametros da rede
+                  loss='sparse_categorical_crossentropy',    # funcao para medir o erro
                   metrics=['accuracy'])
 
     model.fit(x_train, y_train, batch_size=100, epochs=10)
