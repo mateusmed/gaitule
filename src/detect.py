@@ -39,6 +39,14 @@ def test_image_set(image_path):
     print(f'categoria: {categories[np.argmax(prediction[0])]}')
     print('=================================')
 
+    # todo imagem abrindo quebrada, resolver
+    plt.subplot(1, 1, 1)
+    plt.imshow(image)
+    plt.xlabel('Predicted:' + categories[np.argmax(prediction[0])])
+
+    plt.show()
+
+
 
 def test_with_image_window(data):
 
