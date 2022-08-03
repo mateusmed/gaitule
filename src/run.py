@@ -116,10 +116,5 @@ def login():
     print("function login example")
     pass
 
-
-# the program is initiated, so to speak, here
 menu()
 
-
-#generate_data_image()
-# main1()
