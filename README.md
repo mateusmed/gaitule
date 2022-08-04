@@ -41,18 +41,21 @@ em pastas respectivas com os nomes das classificações
 #### archive_modify
 - Quando as imagens forem processadas, elas irão para o archive_modify
 
+#### archive_out_trained
+- Destinado as imagens que você quer testar que não foram usadas no treinamento
+
 #### dataPickle
-- em dataPickle ficará salvo o arquivo usado para serializar o objeto com o conteudo das das imagens processadas 
+- Em dataPickle ficará salvo o arquivo usado para serializar o objeto com o conteudo das das imagens processadas 
 
 #### mask
-- devido o processamento das imagens usar tecnicas como espelhamento e rotação, 
+- Devido o processamento das imagens usar tecnicas como espelhamento e rotação, 
 nesta pasta fica armazenado a imagem da mascara que será aplicada por cima de todas as imagens processadas  
 
 #### model
-- em model ficara armazenado o arquivo de treinamento gerado pelo tersorflow .h5
+- Em model ficara armazenado o arquivo de treinamento gerado pelo tersorflow .h5
 
 #### properties
-- aqui fica armazenado o aquivo .json com as configurações necessárias para o sitema 
+- Aqui fica armazenado o aquivo .json com as configurações necessárias para o sitema 
 executar sem problemas, nele você precisa configurar alguns parametros:
 
 ```
@@ -97,6 +100,7 @@ para instalar as dependencias execute o comando:
 pip install -r requirements.txt
 ```
 
+Executando:
 ```
 python src/run.py
 ```
