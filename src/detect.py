@@ -47,6 +47,7 @@ def test_image_set(image_path):
     print(f'categoria: {categories[position_value_perdiction]}')
     print('=================================')
 
+
     # todo modularizar isso
     json_response = {}
 
