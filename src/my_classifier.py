@@ -65,6 +65,9 @@ def train_and_save_model(data):
 
     (feature, labels) = data
 
+    print(f"feature: {feature}")
+    print(f"labels: {labels}")
+
     x_train, x_test, y_train, y_test = train_test_split(feature, labels, test_size=0.1)
 
     input_layer = tf.keras.layers.Input([224, 224, 3])
@@ -102,14 +105,16 @@ def train_and_save_model(data):
                                          strides=(2, 2))(conv4)
 
 
-    flt1 = tf.keras.layers.Flatten()(pool4)
+    flt1 = tf.keras.layers.Flatten()(pool4)                   # flatten "alinhar"
 
     dn1 = tf.keras.layers.Dense(512, activation='relu')(flt1)
+
+    # todo alterar para o numero de classes,  ===> testar
     out = tf.keras.layers.Dense(5, activation='softmax')(dn1)
 
     model = tf.keras.Model(input_layer, out)
 
-    model.compile(optimizer='adam',                      # otimizador tenta otimizar os pesos e os parametros da rede
+    model.compile(optimizer='adam',                          # otimizador tenta otimizar os pesos e os parametros da rede
                   loss='sparse_categorical_crossentropy',    # funcao para medir o erro
                   metrics=['accuracy'])
 

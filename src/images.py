@@ -21,14 +21,25 @@ json = my_global.get_properties()
 #     im.save('C:\\dev\\workspaceMateus\\pos\\13_tcc\\mask\\circleMask_2.png', "png")
 #
 #
-# #não funcionando
-# def clean_archive_modify():
-#     content = f"{json['dir_pictures_modify']}\\*"
-#     files = glob.glob(content)
-#
-#     for f in files:
-#         print(f"remove {f}")
-#         os.remove(f)
+
+
+def clean_archive_modify():
+    # todo  verificar se o usuario realmente quer deletar os dados do modelo treinado,
+    # todo pois o treinamento exige tempo de processamento
+
+    folder = json['dir_pictures_modify']
+
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+    print("all files removed")
 
 
 def generate_image_name():

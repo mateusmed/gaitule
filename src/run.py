@@ -4,7 +4,7 @@ import sys
 import os
 import shutil
 import utils
-import myclassifier
+import my_classifier
 import detect
 import images
 
@@ -17,23 +17,7 @@ def generate_data_image():
 
 
 def clean_img_processed():
-    #todo  verificar se o usuario realmente quer deletar os dados do modelo treinado,
-    #todo pois o treinamento exige tempo de processamento
-    json = my_global.get_properties()
-
-    folder = json['dir_pictures_modify']
-
-    for filename in os.listdir(folder):
-        file_path = os.path.join(folder, filename)
-        try:
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
-            elif os.path.isdir(file_path):
-                shutil.rmtree(file_path)
-        except Exception as e:
-            print('Failed to delete %s. Reason: %s' % (file_path, e))
-
-    print("all files removed")
+    images.clean_archive_modify()
 
 def test_image():
     choice = input("""Digite o caminho da imagem: """)
@@ -51,7 +35,7 @@ def clean_trained():
 
 def trained():
     data = utils.load_data_pickle()
-    myclassifier.train_and_save_model(data)
+    my_classifier.train_and_save_model(data)
 
 
 def test_img_random():
@@ -101,20 +85,11 @@ def menu():
         sys.exit
 
     else:
-        print("You must only select either A or B")
-        print("Please try again")
+        print("Selecione uma das opcoes disponiveis")
+        print("Tente novamente")
         print("========================================================= ")
         menu()
 
-
-def register():
-    print("function register example")
-    pass
-
-
-def login():
-    print("function login example")
-    pass
 
 menu()
 

@@ -22,10 +22,11 @@ def test_image_set(image_path):
     model_file = json['model_file_save']
     model = tf.keras.models.load_model(model_file)
 
-    data = utils.load_data_pickle()
-    (feature, labels) = data
+    unmutable_image = cv2.imread(image_path)
+    unmutable_image = cv2.cvtColor(unmutable_image, cv2.COLOR_BGR2RGB)
 
     image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image = cv2.resize(image, (224, 224))
     image = np.array(image, dtype=np.float32)
 
@@ -34,16 +35,30 @@ def test_image_set(image_path):
     print(f'SHAPE: {image.shape}')
 
     prediction = model.predict(feature)
+
+    prediction_percent_values = prediction[0]
+    position_value_perdiction = np.argmax(prediction_percent_values)
+    percent_prob = prediction_percent_values[position_value_perdiction]
+
+    print('=================================')
+    # pred_labels = np.argmax(prediction[0], axis=1)
+    # print(f'pre_labels: {pred_labels}')
+    print(f'percent prob: {percent_prob}')
     print('=================================')
     print(f'prediction content: {prediction}')
-    print(f'categoria: {categories[np.argmax(prediction[0])]}')
+    print(f'categoria: {categories[position_value_perdiction]}')
     print('=================================')
 
-    # todo imagem abrindo quebrada, resolver
-    plt.subplot(1, 1, 1)
-    plt.imshow(image)
-    plt.xlabel('Predicted:' + categories[np.argmax(prediction[0])])
 
+    # todo => tenho duvida do shape do prediction que vem com 5 valores
+    # aparentemente isso tem a ver com a densidade do softmax
+
+    plt.subplot(1, 1, 1)
+    plt.imshow(unmutable_image)
+    plt.xlabel(f'Percent: {percent_prob}'
+               f'\nPredicted:{categories[position_value_perdiction]}')
+
+    plt.xticks([])
     plt.show()
 
 
@@ -58,6 +73,9 @@ def test_with_image_window(data):
     categories = json['categories']
 
     (feature, labels) = data
+
+    print(f"feature: {feature}")
+    print(f"labels: {labels}")
 
     x_train, x_test, y_train, y_test = train_test_split(feature, labels, test_size=0.1)
 
@@ -75,7 +93,7 @@ def test_with_image_window(data):
     prediction = model.predict(x_test)
 
     print(f"x_test: {x_test[0]}")
-    print(f"prediction: {categories}")
+    print(f"categories: {categories}")
     print("=======================================")
     print(f"prediction: {prediction[0]}")
     print("=======================================")

@@ -29,7 +29,7 @@ def open_image():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-
+# gerando pickle com dados discretos, tanto do rgb quando da categoria
 def create_data_pickle_by_images_and_labels():
 
     categories = json['categories']
@@ -62,7 +62,8 @@ def create_data_pickle_by_images_and_labels():
 
     print(f"number of pictures: {len(data)}")
 
-    # Pickle in Python is primarily used in serializing and deserializing a Python object structure.
+    # Pickle in Python is primarily used in serializing and
+    # deserializing a Python object structure.
     pik = open(json['pickler_file'], 'wb')
     pickle.dump(data, pik)
     pik.close()
@@ -94,6 +95,8 @@ def load_data_pickle():
     feature = np.array(feature, dtype=np.float32)
     labels = np.array(labels)
 
+    # In your image classification, dividing by 255 is good because the whole range is in [0,1].
+    # You can't have anything less than 0 and greater than 1.
     feature = feature/255.0
 
     return [feature, labels]
