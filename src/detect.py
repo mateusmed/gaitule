@@ -41,21 +41,25 @@ def test_image_set(image_path):
     percent_prob = prediction_percent_values[position_value_perdiction]
 
     print('=================================')
-    # pred_labels = np.argmax(prediction[0], axis=1)
-    # print(f'pre_labels: {pred_labels}')
     print(f'percent prob: {percent_prob}')
     print('=================================')
     print(f'prediction content: {prediction}')
     print(f'categoria: {categories[position_value_perdiction]}')
     print('=================================')
 
+    # todo modularizar isso
+    json_response = {}
 
-    # todo => tenho duvida do shape do prediction que vem com 5 valores
-    # aparentemente isso tem a ver com a densidade do softmax
+    for index, value in enumerate(categories):
+        percent_unformat = prediction_percent_values[index]
+        json_response[value] = '{:.1%}'.format(percent_unformat)
+
+    print(json_response)
+
 
     plt.subplot(1, 1, 1)
     plt.imshow(unmutable_image)
-    plt.xlabel(f'Percent: {percent_prob}'
+    plt.xlabel(f'Percent: {json_response}'
                f'\nPredicted:{categories[position_value_perdiction]}')
 
     plt.xticks([])

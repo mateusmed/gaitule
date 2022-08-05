@@ -56,6 +56,9 @@ def train_and_save_model(data):
     print(f'=============================')
 
     model_file_save = json['model_file_save']
+    categories_list = json['categories']
+
+    size_categories = len(categories_list)
 
     if os.path.exists(model_file_save) is True:
         print(f'=============================')
@@ -71,7 +74,6 @@ def train_and_save_model(data):
     x_train, x_test, y_train, y_test = train_test_split(feature, labels, test_size=0.1)
 
     input_layer = tf.keras.layers.Input([224, 224, 3])
-
 
     conv1 = tf.keras.layers.Conv2D(filters=32,              # numero de filtros
                                    kernel_size=(5, 5),
@@ -104,13 +106,11 @@ def train_and_save_model(data):
     pool4 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2),
                                          strides=(2, 2))(conv4)
 
-
     flt1 = tf.keras.layers.Flatten()(pool4)                   # flatten "alinhar"
 
     dn1 = tf.keras.layers.Dense(512, activation='relu')(flt1)
 
-    # todo alterar para o numero de classes,  ===> testar
-    out = tf.keras.layers.Dense(5, activation='softmax')(dn1)
+    out = tf.keras.layers.Dense(size_categories, activation='softmax')(dn1)
 
     model = tf.keras.Model(input_layer, out)
 
