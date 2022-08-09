@@ -1,5 +1,4 @@
 import unittest
-import numpy as np
 
 from src.global_properties import get_properties
 

@@ -3,7 +3,6 @@ import tensorflow as tf
 import numpy as np
 
 import cv2
-import utils
 
 import matplotlib.pyplot as plt
 
@@ -56,7 +55,6 @@ def test_image_set(image_path):
         json_response[value] = '{:.1%}'.format(percent_unformat)
 
     print(json_response)
-
 
     plt.subplot(1, 1, 1)
     plt.imshow(unmutable_image)
