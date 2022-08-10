@@ -1,9 +1,97 @@
 import unittest
 
+import cv2
+import tensorflow as tf
+
+import keras
+from keras import layers
+import matplotlib.pyplot as plt
+
 from src.global_properties import get_properties
 
 
 class Testing(unittest.TestCase):
+
+    def test_verify_filters_image(self):
+
+        # oq a convolução faz exatamente? a convolução extrai as informações da imagem
+        # e as transforma em "mapa" o kernel size representa a complexidade da informações
+        # quanto maior o kernel maior a complexidade, neste exemplo estamos printando os "mapas"
+
+        img_path = "C:\dev\workspaceMateus\gaitule\mask\destiny.jpg"
+        img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) # utilizando escala cinza para simplificar
+        img = cv2.resize(img, (224, 224))
+        height, width = img.shape
+
+        # cv2.imshow("img", img)
+        # cv2.waitKey(0)
+
+        model = keras.Sequential()
+        model.add(layers.Conv2D(input_shape=(height, width, 1),     #uma dimensão, apenas uma cor
+                                filters=64,
+                                kernel_size=(3, 3)))
+
+        model.summary()
+
+        filters, _ = model.layers[0].get_weights()
+        f_min, f_max = filters.min(), filters.max()
+
+        # normalizando valores para conseguir enxergar o resultado dos filtros com mais clareza
+        filters = (filters - f_min) / (f_max - f_min)
+
+        plt.figure(figsize=(9, 9))
+
+        i = 30
+
+        for i in range(9):
+            plt.subplot(3, 3, i + 1)
+
+            f = filters[:, :, :, i]  # altura, largura, dimensão e numero do filtro
+            f = cv2.resize(f, (250, 250), interpolation=cv2.INTER_NEAREST)  # mantenha os pixels mesmo com o resize
+
+            plt.imshow(f)
+            plt.xlabel(f"Position: {i}")
+            plt.xticks([])
+
+        plt.show()
+
+    def test_max_pool(self):
+
+        """
+        input
+
+        [[
+           [[1.] [2.] [3.]]
+           [[4.] [5.] [6.]]
+           [[7.] [8.] [9.]]
+        ]]
+
+        result
+
+        [[
+           [[5.] [6.]]
+           [[8.] [9.]]
+        ]]
+
+        verificação 2x2 em uma matriz 3x3
+        pegando o maior valor daquele quadrado verificador
+
+        """
+
+        x = tf.constant([[1., 2., 3.],
+                         [4., 5., 6.],
+                         [7., 8., 9.]])
+
+        x = tf.reshape(x, [1, 3, 3, 1])
+
+        print(x)
+        max_pool_2d = tf.keras.layers.MaxPooling2D(pool_size=(2, 2),
+                                                   strides=(1, 1),
+                                                   padding='valid')
+
+        response = max_pool_2d(x)
+        print("============")
+        print(response)
 
     def test_percent_convert_value(self):
         your_value = 1 / 3.0

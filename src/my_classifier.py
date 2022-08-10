@@ -73,12 +73,16 @@ def train_and_save_model(data):
 
     x_train, x_test, y_train, y_test = train_test_split(feature, labels, test_size=0.1)
 
+    #  dimensoes da imagem passada par o treinamento, 224 x 224 x 3
+    #  (tamanho comumente usado em classificacao de imagens)
     input_layer = tf.keras.layers.Input([224, 224, 3])
 
     conv1 = tf.keras.layers.Conv2D(filters=32,              # numero de filtros
                                    kernel_size=(5, 5),
                                    padding='same',
                                    activation='relu')(input_layer)
+
+    # sub amostragem compressao dos dados
 
     pool1 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv1)
 
@@ -106,7 +110,7 @@ def train_and_save_model(data):
     pool4 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2),
                                          strides=(2, 2))(conv4)
 
-    flt1 = tf.keras.layers.Flatten()(pool4)                   # flatten "alinhar"
+    flt1 = tf.keras.layers.Flatten()(pool4)                        # flatten "alinhar"
 
     dn1 = tf.keras.layers.Dense(512, activation='relu')(flt1)
 
