@@ -19,17 +19,11 @@ Welcome to Gaitule, a system that aims to simplify the classification and traini
 
 Let's assume you are using Gaitule to classify images of dogs and cats.
 
----
-
-## How it Works
-
-Let's assume you are using Gaitule to classify images of dogs and cats.
-
 ```
     gaitule
         |_ archive
-            |_ cachorro
-            |_ gato
+            |_ gog
+            |_ cat
         |_ archive_modify
         |_ dataPickle
         |_ mask
@@ -66,7 +60,7 @@ Let's assume you are using Gaitule to classify images of dogs and cats.
   "dir_pictures_modify": "C:\\dev\\workspaceMateus\\gaitule\\archive_modify",
   "dir_pictures": "C:\\dev\\workspaceMateus\\gaitule\\archive",
   "circle_mask": "C:\\dev\\workspaceMateus\\gaitule\\mask\\circleMask.png",
-  "categories": ["inflamatorias", "normais"],
+  "categories": ["dog", "cat"],
   "degress_rotation_interval": 20,
   "normalize_size_image": 512
 }
@@ -106,7 +100,6 @@ python src/run.py
 
 ---
 
----
 ---
 
 In the following example, a model was generated to classify cell images into the following categories:

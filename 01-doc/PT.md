@@ -65,7 +65,7 @@ executar sem problemas, nele você precisa configurar alguns parametros:
   "dir_pictures_modify": "C:\\dev\\workspaceMateus\\gaitule\\archive_modify",
   "dir_pictures": "C:\\dev\\workspaceMateus\\gaitule\\archive",
   "circle_mask": "C:\\dev\\workspaceMateus\\gaitule\\mask\\circleMask.png",
-  "categories": ["inflamatorias", "normais"],
+  "categories": ["cachorro", "gato"],
   "degress_rotation_interval": 20,
   "normalize_size_image": 512
 }
