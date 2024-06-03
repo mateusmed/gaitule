@@ -106,5 +106,44 @@ python src/run.py
 
 ---
 
+---
+---
+
+In the following example, a model was generated to classify cell images into the following categories:
+
+```
+- inflamatórias
+- normais
+```
+
+When you start the program, you will see something like this:
+
+![menu](./img/01-menu.png)
+
+When processing the images:
+
+![process](./img/02-archive_modify.png)
+
+When testing random images, it is possible to verify the accuracy of the trained model:
+
+![range_trained_percent](./img/03-range_trained_percent.png)
+
+Example of image processing, pre-training:
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="./img/05-AAorigin.png" alt="origin" width="200" height="200">
+    <img src="./img/06-circleMask.png" alt="origin" width="200" height="200">
+    <img src="./img/07-destiny.png" alt="origin" width="200" height="200">
+</div>
+
+Example of image classification for inflammatory and normal cells:
+
+
+<img src="./img/04-test_random_images.png" alt="origin" width="500" height="500">
+
+
+---
+
+
 
 

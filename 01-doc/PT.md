@@ -105,6 +105,17 @@ Executando:
 python src/run.py
 ```
 
+---
+---
+
+Neste exemplo a seguir, foi gerado um modelo para classificar \ 
+imagens de células nas seguintes categorias:
+
+```
+- inflamatórias
+- normais
+```
+
 Ao iniciar o programa você verá algo parecido com:
 
 ![menu](./img/01-menu.png)
@@ -117,25 +128,17 @@ Ao testar imagens randomicas é possível verificar a acurácia do modelo treina
 
 ![range_trained_percent](./img/03-range_trained_percent.png)
 
+Exemplo de processamento de imagem, pré treinamento:
 
-Processo de treinamento:
-
-![origin](./img/05-AAorigin.jpg)
-
-
-![circleMask](./img/06-circleMask.png)
-
-![originPlusCircleMask](./img/07-destiny.jpg)
-
-
-test
-<img src="./img/05-AAorigin.jpg" alt="origin" width="200" height="300">
-
+<div style="display: flex; justify-content: space-between;">
+    <img src="./img/05-AAorigin.jpg" alt="origin" width="200" height="200">
+    <img src="./img/06-circleMask.jpg" alt="origin" width="200" height="200">
+    <img src="./img/07-destiny.jpg" alt="origin" width="200" height="200">
+</div>
 
 Exemplo de classificação de imagens para células inflamatórias e normais:
 
-![test_random_images](./img/04-test_random_images.png)
-
+<img src="./img/04-test_random_images.png" alt="origin" width="500" height="500">
 
 
 ---
