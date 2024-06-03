@@ -1,5 +1,4 @@
 .idea*
-
 /env/*
-/model/*
+/model/mymodel.h5
 /dataPickle/*
