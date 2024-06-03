@@ -131,9 +131,9 @@ Ao testar imagens randomicas é possível verificar a acurácia do modelo treina
 Exemplo de processamento de imagem, pré treinamento:
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="./img/05-AAorigin.jpg" alt="origin" width="200" height="200">
-    <img src="./img/06-circleMask.jpg" alt="origin" width="200" height="200">
-    <img src="./img/07-destiny.jpg" alt="origin" width="200" height="200">
+    <img src="./img/05-AAorigin.png" alt="origin" width="200" height="200">
+    <img src="./img/06-circleMask.png" alt="circleMask" width="200" height="200">
+    <img src="./img/07-destiny.png" alt="destiny" width="200" height="200">
 </div>
 
 Exemplo de classificação de imagens para células inflamatórias e normais:
