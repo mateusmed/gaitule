@@ -55,7 +55,7 @@ nesta pasta fica armazenado a imagem da mascara que será aplicada por cima de t
 - Em model ficara armazenado o arquivo de treinamento gerado pelo tersorflow .h5
 
 #### properties
-- Aqui fica armazenado o aquivo .json com as configurações necessárias para o sitema 
+- Aqui fica armazenado o aquivo .json com as configurações necessárias para o sistema 
 executar sem problemas, nele você precisa configurar alguns parametros:
 
 ```
@@ -104,6 +104,38 @@ Executando:
 ```
 python src/run.py
 ```
+
+Ao iniciar o programa você verá algo parecido com:
+
+![menu](./img/01-menu.png)
+
+Ao processar as imagens: 
+
+![process](./img/02-archive_modify.png)
+
+Ao testar imagens randomicas é possível verificar a acurácia do modelo treinado:
+
+![range_trained_percent](./img/03-range_trained_percent.png)
+
+
+Processo de treinamento:
+
+![origin](./img/05-AAorigin.jpg)
+
+
+![circleMask](./img/06-circleMask.png)
+
+![originPlusCircleMask](./img/07-destiny.jpg)
+
+
+test
+<img src="./img/05-AAorigin.jpg" alt="origin" width="200" height="300">
+
+
+Exemplo de classificação de imagens para células inflamatórias e normais:
+
+![test_random_images](./img/04-test_random_images.png)
+
 
 
 ---

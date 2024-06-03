@@ -57,6 +57,7 @@ def train_and_save_model(data):
 
     model_file_save = json['model_file_save']
     categories_list = json['categories']
+    normalize_size_image = json['normalize_size_image']
 
     size_categories = len(categories_list)
 
@@ -112,7 +113,7 @@ def train_and_save_model(data):
 
     flt1 = tf.keras.layers.Flatten()(pool4)                        # flatten "alinhar"
 
-    dn1 = tf.keras.layers.Dense(512, activation='relu')(flt1)
+    dn1 = tf.keras.layers.Dense(normalize_size_image, activation='relu')(flt1)
 
     out = tf.keras.layers.Dense(size_categories, activation='softmax')(dn1)
 

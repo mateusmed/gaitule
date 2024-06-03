@@ -1,8 +1,8 @@
 
 LINKS:
 
-[ENGLISH](EN.md)
+[ENGLISH](01-doc/EN.md)
 
-[PORTUGUÊS](PT.md)
+[PORTUGUÊS](01-doc/PT.md)
 
 

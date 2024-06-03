@@ -26,14 +26,14 @@ def verify_path_exist(path_file):
 
 
 def you_right_this():
-    choice = input(""" Tem certeza que deseja fazer isso?
-                          1: Sim
-                          2: Não 
+    choice = input(""" Are you sure you want to do this?
+                          1: Yes
+                          2: No
                           
                           Please enter your choice:""")
 
     if choice != '1' and choice != '2':
-        print("Digite uma opcao valida 1 ou 2: ")
+        print("Select a valid option 1 or 2: ")
         you_right_this()
 
     return choice
@@ -44,39 +44,39 @@ def clean_img_processed():
 
 
 def test_image():
-    image_path = input("""Digite o caminho da imagem: """)
+    image_path = input("""Please, provide path of image: """)
     my_file = Path(image_path)
 
     if my_file.is_file():
         detect.test_image_set(image_path)
     else:
-        print("caminho da imagem nao valido")
+        print("path of image not valid")
         return
 
 
 def clean_trained():
-    print("O processo de treinamento emana tempo...")
+    print("The training process takes time...")
     option = you_right_this()
 
     if option == '1':
-        print("Iniciando remocao")
+        print("Init removing files")
         json = my_global.get_properties()
 
         model_file_save = json['model_file_save']
         pickler_file = json['pickler_file']
 
         if verify_path_exist(model_file_save):
-            print("Removendo: {}.", model_file_save)
+            print("Removing: {}.", model_file_save)
             os.remove(model_file_save)
 
         if verify_path_exist(pickler_file):
-            print("Removendo: {}.", pickler_file)
+            print("Removing: {}.", pickler_file)
             os.remove(pickler_file)
 
         print("ok...")
 
     if option == '2':
-        print("Ok, a base de treinamento nao foi removida")
+        print("Ok, the training base was not removed")
         return
 
 
@@ -94,15 +94,15 @@ def menu():
     print("=============== GAITULE - img classifier ===============")
 
     choice = input("""
-                      1: Treinar o modelo
-                      2: Limpar dados de treinamento
-                      3: Processar imagens
-                      4: Limpar imagens processadas
-                      5: Testar imagens aleatorias
-                      6: Testar imagem que você escolher
-                      7: Sair
+                      1: Train the model
+                      2: Clear training data
+                      3: Process images
+                      4: Clear processed images
+                      5: Test random images
+                      6: Test a chosen image
+                      7: Exit
                       
-                      Please enter your choice: """)
+                      Please enter your choice:""")
 
     if choice == '1':
         trained()
@@ -129,11 +129,11 @@ def menu():
         menu()
 
     elif choice == '7':
-        sys.exit
+        sys.exit()
 
     else:
-        print("Selecione uma das opcoes disponiveis")
-        print("Tente novamente")
+        print("Select a valid option")
+        print("Try again")
         print("========================================================= ")
         menu()
 
