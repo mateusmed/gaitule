@@ -144,4 +144,8 @@ Exemplo de classificação de imagens para células inflamatórias e normais:
 ---
 
 
+### Arquitetura (CNN)
+
+<img src="./img/08-redeConv1.png" alt="origin" width="900" height="500">
+<img src="./img/09-redeConv2.png" alt="origin" width="900" height="500">
 

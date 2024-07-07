@@ -22,7 +22,7 @@ Let's assume you are using Gaitule to classify images of dogs and cats.
 ```
     gaitule
         |_ archive
-            |_ gog
+            |_ dog
             |_ cat
         |_ archive_modify
         |_ dataPickle
@@ -137,6 +137,12 @@ Example of image classification for inflammatory and normal cells:
 
 ---
 
+
+
+### Architecture (CNN)
+
+<img src="./img/08-redeConv1.png" alt="origin" width="900" height="500">
+<img src="./img/09-redeConv2.png" alt="origin" width="900" height="500">
 
 
 
